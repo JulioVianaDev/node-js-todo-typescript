@@ -16,7 +16,7 @@ export const getTodos: RequestHandler=(req,res)=>{
   res.status(200).json({todos: Todos})
 }
 
-export const updateTodo:RequestHandler<{id:number}>= (req,res)=>{
+export const updateTodo:RequestHandler= (req,res)=>{
   const todoId = Number(req.params.id);
   const updateText = (req.body as {text:string}).text;
   const todoIndex = Todos.findIndex(todo=>todo.id === todoId);
@@ -29,7 +29,7 @@ export const updateTodo:RequestHandler<{id:number}>= (req,res)=>{
 }
 
 export const deleteTodo:RequestHandler=(req,res)=>{
-  const todoId = req.params.id;
+  const todoId = Number(req.params.id);
   const todoIndex = Todos.findIndex(todo=> todo.id === todoId);
   if(todoIndex<0){
     throw new Error("não deu pra achar o todo");

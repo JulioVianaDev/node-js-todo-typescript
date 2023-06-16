@@ -26,7 +26,7 @@ const updateTodo = (req, res) => {
 };
 exports.updateTodo = updateTodo;
 const deleteTodo = (req, res) => {
-    const todoId = req.params.id;
+    const todoId = Number(req.params.id);
     const todoIndex = Todos.findIndex(todo => todo.id === todoId);
     if (todoIndex < 0) {
         throw new Error("não deu pra achar o todo");
